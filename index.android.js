@@ -16,7 +16,8 @@ import {
     ToastAndroid,
 } from 'react-native';
 
-import ModalDialog from './js/ModalDialog.js'
+import ModalDialog from './js/ModalDialog.js';
+import ModalPopupWindow from './js/ModalPopupWindow';
 
 export  default class ModalDemo extends Component {
     componentDidMount() {
@@ -49,16 +50,14 @@ export  default class ModalDemo extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <ModalDialog
-                    dialogVisible={this.state.isDialogVisible}
-                    dialogLeftBtnAction={() => {
-                        {/*this.hideDialog();*/}
+                <ModalPopupWindow
+                    popBtnAction={() => {
                         BackHandler.exitApp();
                     }}
-                    dialogRightBtnAction={() => {
-                        {/*this.hideDialog();*/}
-                        BackHandler.exitApp();
-                    }}/>
+
+                    popVisible={this.state.isDialogVisible}
+
+                />
             </View>
         )
     }
