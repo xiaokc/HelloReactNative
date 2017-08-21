@@ -15,12 +15,12 @@ import {
     ToastAndroid,
 } from 'react-native';
 
-import StartView from './js/navigations/StartView';
+import JsMain from './js/androidjs/JsMain';
 
 export  default class HelloReactNative extends Component {
     render() {
         return (
-           <StartView/>
+           <JsMain/>
         )
     }
 }

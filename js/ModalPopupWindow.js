@@ -30,6 +30,7 @@ export default class ModalPopupWindow extends Component {
         popBtnTxt: React.PropTypes.string, // 底部button内容
         popBtnAction: React.PropTypes.func.isRequired,
         popVisible: React.PropTypes.bool, // 是否可见
+        popItemClick: React.PropTypes.func.isRequired, // item点击事件
 
     };
 
@@ -49,7 +50,7 @@ export default class ModalPopupWindow extends Component {
     };
 
     cellAction = (item) => {
-        alert("item click");
+        this.props.popItemClick(item);
     };
 
     render() {
