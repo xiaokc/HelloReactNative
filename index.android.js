@@ -16,49 +16,56 @@ import {
     ToastAndroid,
 } from 'react-native';
 
-import ModalDialog from './js/ModalDialog.js';
-import ModalPopupWindow from './js/ModalPopupWindow';
+import {StackNavigator} from 'react-navigation';
 
-export  default class ModalDemo extends Component {
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-    }
+import HomePage from './js/navigations/HomePage';
+import FindPage from './js/navigations/FindPage';
+import MinePage from './js/navigations/MinePage';
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-    }
+const RouteConfigs = { // 类似AndroidManifest.xml，需要先注册各个Navigator
+    Home: {
+        screen: HomePage,
+        navigationOptions: ({navigation}) => ({
+            title: '首页',
+        }),
+    },
 
-    handleBackButton() {
-        return false;
-    }
+    Find: {
+        screen: FindPage,
+        navigationOptions: ({navigation}) => ({
+            title: '发现',
+        }),
+    },
+    Mine: {
+        screen: MinePage,
+        navigationOptions: ({navigation}) => ({
+            title: '我的',
+        }),
+    },
+};
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isDialogVisible: true
-        };
-    }
+const StackNavigatorConfig = {
+    initialRouteName: 'Home',
+    initialRouteParams: {
+        initPara: '初始化页面参数'
+    },
+    navigationOptions: {
+        title: '标题',
+        headerTitleStyle: {fontSize: 18, color: '#666666'},
+        headerStyle: {height: 48, backgroundColor: '#ffffff'},
+    },
+    paths:'page/main',
+    mode:'card',
+    headerMode:'float',
+    cardStyle:{backgroundColor: "#ffffff"},
 
-    showDialog() {
-        this.setState({isDialogVisible: true});
-    }
+};
 
-    hideDialog() {
-        this.setState({isDialogVisible: false});
-    }
-
+const Navigator = StackNavigator(RouteConfigs, StackNavigatorConfig);
+export  default class HelloReactNative extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <ModalPopupWindow
-                    popBtnAction={() => {
-                        BackHandler.exitApp();
-                    }}
-
-                    popVisible={this.state.isDialogVisible}
-
-                />
-            </View>
+           <Navigator/>
         )
     }
 }
@@ -71,7 +78,7 @@ var styles = StyleSheet.create({
 });
 
 
-AppRegistry.registerComponent('HelloReactNative', () => ModalDemo);
+AppRegistry.registerComponent('HelloReactNative', () => HelloReactNative);
 
 
 
