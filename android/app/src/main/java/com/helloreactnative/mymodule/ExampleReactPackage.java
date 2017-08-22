@@ -19,6 +19,7 @@ public class ExampleReactPackage implements ReactPackage {
 
         modules.add(new MyToast(reactContext));
         modules.add(new ImagePickerModule(reactContext));
+        modules.add(new RNFSManager(reactContext));
 
         return modules;
     }
