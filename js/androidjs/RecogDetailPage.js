@@ -12,7 +12,7 @@ import {
     ListView,
 } from 'react-native';
 var RNFSManager = NativeModules.RNFSManager;
-var data = [];
+
 export default class RecogDetailPage extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +30,7 @@ export default class RecogDetailPage extends Component {
     }
 
     fetchData() {
+        var data = [];
         RNFSManager.readDir(RNFSManager.RNFSDownloadPath)
             .then((resultArray) => {
                 for (var i = 0; i < resultArray.length; i++) {

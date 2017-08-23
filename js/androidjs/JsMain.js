@@ -34,6 +34,9 @@ const RouteConfigs = { // 类似AndroidManifest.xml，需要先注册各个Navig
     },
     RecogDetail:{
         screen:RecogDetailPage,
+        navigationOptions: ({navigation}) => ({
+            title: '',
+        }),
     }
 };
 
